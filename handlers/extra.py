@@ -6,7 +6,7 @@ from random import randint
 async def echo(message: types.Message):
     answer = f'@{message.from_user.username}' if message.from_user.username is not None \
         else message.from_user.full_name
-    bad_words = ['java', 'html', 'дурак', 'глупый', 'козел', 'черт']
+    bad_words = ['java', 'html', 'дура', 'глупый', 'козел', 'черт']
     for word in bad_words:
         if word in message.text.lower():
             await bot.delete_message(message.chat.id, message.message_id)
