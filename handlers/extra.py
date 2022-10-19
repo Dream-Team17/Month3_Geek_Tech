@@ -9,8 +9,8 @@ async def echo(message: types.Message):
     bad_words = ['java', 'html', 'дура', 'глупый', 'козел', 'черт']
     for word in bad_words:
         if word in message.text.lower():
+            await message.reply(f'Не матерись {answer}, сам ты {word}!')
             await bot.delete_message(message.chat.id, message.message_id)
-            await message.reply_to_message(f'Не матерись {answer}, сам ты {word}!')
 
     if message.text.startswith('game'):
         emoji =['⚽️', '🏀', '🎲', '🎯', '🎳', '🎰']
