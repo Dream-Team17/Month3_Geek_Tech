@@ -46,7 +46,7 @@ async def load_department(message: types.Message, state: FSMContext):
 
 async def load_age(message: types.Message, state: FSMContext):
     try:
-        if int(message.text) < 18 or int(message.text) > 50:
+        if int(message.text) < 10 or int(message.text) > 80:
             await message.answer('She/He can\'t be mentor!')
             await state.finish()
             return
@@ -54,7 +54,7 @@ async def load_age(message: types.Message, state: FSMContext):
         async with state.proxy() as data:
             data['age'] = int(message.text)
         await FSMAdmin.next()
-        await message.answer('Which group?', reply_markup=gender_markup)
+        await message.answer('Which group?', reply_markup=cancel_markup)
     except:
         await message.answer('Please write numbers')
 
