@@ -3,6 +3,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from config import bot, dp
 from random import randint
 from keyboard.client_kb import start_markup
+from database.db import sql_command_random
 
 # @dp.message_handler(commands=['start'])
 async def start_handler(message: types.Message):
@@ -50,11 +51,16 @@ async def send_mem(message: types.Message):
     a = randint(0, 3)
     await bot.send_photo(message.from_user.id, photo=photo_lst[a])
 
+async def get_random_mentor(message: types.Message):
+    await sql_command_random(message)
+
+
 def register_handler_client(dp: Dispatcher):
     dp.register_message_handler(start_handler, commands=['start'])
     dp.register_message_handler(quiz_1, commands=['quiz'])
     dp.register_message_handler(send_mem, commands=['mem'])
     dp.register_message_handler(info_handler, commands=['info'])
+    dp.register_message_handler(get_random_mentor, commands=['get'])
 
 
 

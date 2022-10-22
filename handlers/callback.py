@@ -48,5 +48,5 @@ async def quiz_3(call: types.CallbackQuery):
 
 
 def register_handlers_callback(dp: Dispatcher):
-    dp.register_callback_query_handler(quiz_2, lambda call: call.data=='button_1')
     dp.register_callback_query_handler(quiz_3, lambda call: call.data=='button_2')
+    dp.register_callback_query_handler(quiz_2, lambda call: call.data=='button_1')

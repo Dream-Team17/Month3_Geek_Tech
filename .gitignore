@@ -4,7 +4,7 @@ venv
 __pycache__/
 *.py[cod]
 *.so
-Lib/site-packages
-Scripts
+/Lib
 test.py
 pyvenv.cfg
+/Scripts
