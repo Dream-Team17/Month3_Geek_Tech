@@ -55,7 +55,7 @@ async def get_random_mentor(message: types.Message):
     await sql_command_random(message)
 
 
-def register_handler_client(dp: Dispatcher):
+def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start_handler, commands=['start'])
     dp.register_message_handler(quiz_1, commands=['quiz'])
     dp.register_message_handler(send_mem, commands=['mem'])
