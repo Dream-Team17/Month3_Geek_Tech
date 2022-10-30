@@ -4,6 +4,8 @@ from config import bot, dp
 from random import randint
 from keyboard.client_kb import start_markup
 from database.db import sql_command_random
+from parser1.anime1 import parser
+from parser1.nikastyle import parser_shop
 
 # @dp.message_handler(commands=['start'])
 async def start_handler(message: types.Message):
@@ -54,6 +56,27 @@ async def send_mem(message: types.Message):
 async def get_random_mentor(message: types.Message):
     await sql_command_random(message)
 
+async def parser_anime(message: types.Message):
+    items = parser()
+    for item in items:
+        await message.answer(
+            f"{item['link']}\n\n"
+            f"{item['title']}\n"
+            f"{item['last']}\n"
+            f"#Y{item['year']}\n"
+            f"#{item['country']}\n"
+            f"#{item['genre']}\n"
+        )
+
+async def parser_nika(message: types.Message):
+    items = parser_shop()
+    for item in items:
+        await message.answer(f'{item["title"]}\n\n'
+                             f'Путь к фото: {item["img_url"]}\n\n'
+                             f'{item["description"]}')
+
+
+
 
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start_handler, commands=['start'])
@@ -61,6 +84,9 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(send_mem, commands=['mem'])
     dp.register_message_handler(info_handler, commands=['info'])
     dp.register_message_handler(get_random_mentor, commands=['get'])
+    dp.register_message_handler(parser_anime, commands=['anime'])
+    dp.register_message_handler(parser_nika, commands=['shop'])
+
 
 
 
